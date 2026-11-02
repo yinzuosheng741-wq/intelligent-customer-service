@@ -2,6 +2,8 @@
 
 我使用 Docker Compose 组织 MongoDB、Redis、backend、worker、pi-agent 和 web。完整启动步骤见根 README。
 
+开发环境也可使用 `tools/run_local.py` 在本机启动三项应用服务。该方式使用同一套业务框架，以内存存储并自动导入示例知识，在后端进程内处理异步队列。数据不会跨进程重启保存；完整持久化部署仍需MongoDB与Redis。
+
 ## 配置
 
 执行 python tools/init_env.py 生成本地 .env；填写模型与向量服务密钥，并根据提供方配置模型名称。内部 API 的 INTERNAL_API_TOKEN 必须在后端与 pi 服务一致。生产环境关闭演示用户、设置明确 CORS 和正式认证信息。

@@ -72,6 +72,25 @@ docker compose restart backend
 
 需要查看审核与反馈演示时，可执行 `docker compose exec backend python -m scripts.seed_demo_data`；这是合成演示数据，不代表线上业务记录。
 
+## 本地开发模式（无需 Docker）
+
+Windows PowerShell 中可使用本地启动器运行前端、后端与 pi。先准备环境：
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e .\backend
+npm --prefix web ci
+npm --prefix services/pi-agent ci
+npm --prefix services/pi-agent run build
+.\.venv\Scripts\python.exe tools/init_env.py
+# 编辑 .env，填写聊天模型密钥和地址
+.\.venv\Scripts\python.exe tools/run_local.py
+```
+
+前端为 http://127.0.0.1:18080，API 为 http://127.0.0.1:18000/docs。启动器自动导入7份示例知识，并在后端进程内消费异步任务；数据保存在内存，重启后重新初始化。没有配置向量服务密钥时，使用 hash 向量与关键词检索，关闭远程重排。日志位于本地 `_runtime/`，不会提交到仓库。
+
+停止本地服务：`.\.venv\Scripts\python.exe tools/run_local.py --stop`。需要持久化数据时使用 MongoDB / Redis 部署模式。
+
 ## 验证与结果
 
 我已完成以下本地验证：

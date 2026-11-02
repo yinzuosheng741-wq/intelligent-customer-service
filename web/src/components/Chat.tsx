@@ -11,7 +11,7 @@ export default function Chat({user,onLogout}:{user:User;onLogout:()=>void}){
  const [memoryOpen,setMemoryOpen]=useState(false),[memories,setMemories]=useState<UserMemoryItem[]>([]),[memoryKey,setMemoryKey]=useState("answer_style"),[memoryValue,setMemoryValue]=useState("简洁、分点回答"),[memoryBusy,setMemoryBusy]=useState(false);
  const listRef=useRef<HTMLDivElement>(null),latestUnratedRef=useRef<{query:string;answer:string}|null>(null);
  const welcome=`你好，${user.name}。我会从已入库的业务资料中检索证据，经 pi Agent 生成与校验后回答，并保留可追溯引用。`;
- useEffect(()=>{checkHealth().then(setOnline)},[]);useEffect(()=>setMessages([{role:"assistant",content:welcome}]),[user.id,welcome]);useEffect(()=>listRef.current?.scrollTo({top:listRef.current.scrollHeight,behavior:"smooth"}),[messages,busy]);
+ useEffect(()=>{checkHealth().then(setOnline)},[]);useEffect(()=>{setMessages([{role:"assistant",content:welcome}])},[user.id,welcome]);useEffect(()=>{listRef.current?.scrollTo({top:listRef.current.scrollHeight,behavior:"smooth"})},[messages,busy]);
  const refreshSessions=useCallback(()=>listSessions().then(setSessions).catch(()=>undefined),[]);useEffect(()=>{refreshSessions()},[refreshSessions]);
  const loadMemories=useCallback(()=>myMemories().then(setMemories).catch(()=>undefined),[]);useEffect(()=>{if(memoryOpen)loadMemories()},[memoryOpen,loadMemories]);
  const startNewChat=useCallback(()=>{setSessionId(makeSessionId());setActiveSession(null);setMessages([{role:"assistant",content:welcome}])},[welcome]);

@@ -18,6 +18,7 @@ node_modules/
 web/dist/
 .npm-cache/
 .next/
+*.tsbuildinfo
 out/
 
 # Env / secrets
@@ -40,6 +41,7 @@ chroma_data/
 .test-temp*/
 scenario/verification.json
 local_uploads/
+_runtime/
 .env.*
 !.env.example
 deploy/k8s/secrets.yaml
