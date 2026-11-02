@@ -11,7 +11,7 @@
                                            │ 并行 HTTP
                          ┌─────────────────┼─────────────────┐
                          ▼                 ▼                 ▼
-                  dept-agent-jwc    dept-agent-cwc    dept-agent-*
+                  dept-agent-product    dept-agent-refund    dept-agent-*
                          └─────────────────┬─────────────────┘
                                            ▼
                                MongoDB + Redis Stream
@@ -70,7 +70,7 @@ MemoryContextBuilder
 
 ## 7. 鉴权与人工审核
 
-- `backend/app/auth.py`：账号 + HMAC Token，角色 `student`/`admin`（可绑定 `dept_id` 做部门管理员）。
+- `backend/app/auth.py`：账号 + HMAC Token，角色 `customer`/`admin`（可绑定 `dept_id` 做部门管理员）。
 - `backend/app/review/review_engine.py`：新文档自动出题 → 系统作答 → 审核单 → 累计正确率 → 部门渐进退出（人在环中→环外）。
 - `backend/app/api/deps.py`：`require_user` / `require_admin` / `scope_dept` 鉴权依赖；管理端接口均要求管理员角色，
   部门管理员（`dept_id` 非空）数据隔离，系统管理员（`dept_id` 空）看全部。

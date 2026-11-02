@@ -4,15 +4,15 @@
 
 | 内部 ID | 业务组 |
 |---|---|
-| dept_jwc | 商品识别与检索组 |
-| dept_xsc | 比价导购组 |
-| dept_cwc | 退款服务组 |
-| dept_rsc | 订单物流组 |
-| dept_yjsy | 二手鉴定组 |
-| dept_zfxy | 售后理赔组 |
-| dept_hqaq | 图像材料支持组 |
+| dept_product | 商品识别与检索组 |
+| dept_pricing | 比价导购组 |
+| dept_refund | 退款服务组 |
+| dept_logistics | 订单物流组 |
+| dept_authentication | 二手鉴定组 |
+| dept_claims | 售后理赔组 |
+| dept_evidence | 图像材料支持组 |
 
-内部 ID 和 student/admin 角色是协议标识，前端展示业务名称。scenario/departments.json 和 glossary.json 是配置快照，运行时由 backend/scripts/seed_data.py 写入；变更时需同步配置快照与种子数据。
+内部 ID 和 customer/admin 角色是协议标识，前端展示业务名称。scenario/departments.json 和 glossary.json 是配置快照，运行时由 backend/scripts/seed_data.py 写入；变更时需同步配置快照与种子数据。
 
 ## 专业能力与策略
 

@@ -1,4 +1,4 @@
-"""向量存储：内存实现（开发零运维）+ Chroma（可选）。生产可切 Milvus。
+"""向量存储：内存、MongoDB 共享存储与可选 Chroma。
 
 接口统一：add / search / delete_by_doc。
 """
@@ -66,7 +66,7 @@ class MemoryVectorStore(VectorStore):
 class ChromaVectorStore(VectorStore):
     """Chroma 实现（可选，需 chromadb）。"""
 
-    def __init__(self, collection_name: str = "wenshu_chunks") -> None:
+    def __init__(self, collection_name: str = "shangzhi_chunks") -> None:
         import chromadb  # 延迟导入
 
         self._client = chromadb.PersistentClient(path="./chroma_data")
@@ -97,7 +97,7 @@ class MongoVectorStore(VectorStore):
     """MongoDB 共享向量存储。
 
     适用于当前 MVP/中小数据量，所有部门 Pod 共享同一份向量与版本状态；
-    超过百万 chunk 时可无缝替换为 Milvus 实现。
+    大规模数据需要另外实现专用向量数据库适配器，并评估迁移与检索成本。
     """
 
     def __init__(self, store) -> None:

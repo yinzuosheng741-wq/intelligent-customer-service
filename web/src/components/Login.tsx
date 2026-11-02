@@ -6,8 +6,8 @@ import Icon from "./Icon";
 import styles from "./Login.module.css";
 
 const DEMOS = [
-  { type: "咨询用户", user: "student", pass: "student123", desc: "客服问答、可信引用与个人记忆", icon: "chat" as const },
-  { type: "部门管理员", user: "jwc_admin", pass: "admin123", desc: "部门文档、审核与局部进化", icon: "building" as const },
+  { type: "咨询用户", user: "customer", pass: "customer123", desc: "客服问答、可信引用与个人记忆", icon: "chat" as const },
+  { type: "部门管理员", user: "product_admin", pass: "admin123", desc: "部门文档、审核与局部进化", icon: "building" as const },
   { type: "超级管理员", user: "admin", pass: "admin123", desc: "全局治理、Loop 与策略实验", icon: "shield" as const },
 ];
 
@@ -38,7 +38,7 @@ export default function Login({ onLogin }: { onLogin: (user: User) => void }) {
         <p className={styles.lead}>连接跨部门事实、记忆与反馈，让每一次问答都可追溯，让每一次纠正都改变下一轮行为。</p>
         <div className={styles.arch}>
           {[
-            ["database", "事实平面", "版本化制度与引用"],
+            ["database", "事实平面", "版本化业务规则与引用"],
             ["brain", "五层记忆", "情景、用户、组织、学习"],
             ["loop", "进化闭环", "Observe → Reflect → Adapt"],
           ].map(([icon, title, text]) => <div key={title} className={styles.archItem}>

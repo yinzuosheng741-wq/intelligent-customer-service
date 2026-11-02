@@ -1,6 +1,6 @@
 """鉴权：用户账号、口令哈希、无状态 HMAC Token。
 
-- 用户角色：student（学生，进问答页）/ admin（管理员，进部门管理与审核中心）。
+- 用户角色：customer（咨询用户，进问答页）/ admin（管理员，进业务组管理与审核中心）。
 - Token 格式：`<user_id>.<hexdigest>`，HMAC-SHA256 签名，服务端无状态校验。
 - 部门管理员：admin 账号可绑定 dept_id，未绑定则管理全部部门。
 """
@@ -22,18 +22,18 @@ from app.utils.logging import get_logger
 logger = get_logger(__name__)
 
 # 种子账号（演示用；生产应由管理员创建并妥善保管）
-DEFAULT_USERS = [{'username': 'student', 'password': 'student123', 'name': '演示咨询用户', 'role': 'student', 'dept_id': ''},
+DEFAULT_USERS = [{'username': 'customer', 'password': 'customer123', 'name': '演示咨询用户', 'role': 'customer', 'dept_id': ''},
  {'username': 'admin', 'password': 'admin123', 'name': '系统管理员', 'role': 'admin', 'dept_id': ''},
- {'username': 'jwc_admin',
+ {'username': 'product_admin',
   'password': 'admin123',
   'name': '商品检索组管理员',
   'role': 'admin',
-  'dept_id': 'dept_jwc'},
- {'username': 'cwc_admin',
+  'dept_id': 'dept_product'},
+ {'username': 'refund_admin',
   'password': 'admin123',
   'name': '退款服务组管理员',
   'role': 'admin',
-  'dept_id': 'dept_cwc'}]
+  'dept_id': 'dept_refund'}]
 
 
 def _now() -> str:
@@ -77,7 +77,7 @@ class AuthService:
             if await self.store.get("users", u["username"]) is None:
                 await self.store.upsert_user(self._to_user(u))
                 logger.info("已创建种子账号: %s (%s)", u["username"], u["role"])
-        logger.warning("已创建演示账号（student/student123, admin/admin123 等）。生产环境请设置 SEED_DEMO_USERS=false 并删除这些账号。")
+        logger.warning("已创建演示账号（customer/customer123, admin/admin123 等）。生产环境请设置 SEED_DEMO_USERS=false 并删除这些账号。")
 
     @staticmethod
     def _to_user(u: dict[str, Any]) -> dict[str, Any]:
@@ -85,7 +85,7 @@ class AuthService:
             "_id": u["username"],
             "username": u["username"],
             "name": u.get("name", u["username"]),
-            "role": u.get("role", "student"),
+            "role": u.get("role", "customer"),
             "dept_id": u.get("dept_id", ""),
             "password_hash": AuthService.hash_password(u["password"]),
             "created_at": _now(),
@@ -110,7 +110,7 @@ class AuthService:
             "id": user.get("_id", ""),
             "username": user.get("username", ""),
             "name": user.get("name", ""),
-            "role": user.get("role", "student"),
+            "role": user.get("role", "customer"),
             "dept_id": user.get("dept_id", ""),
         }
 

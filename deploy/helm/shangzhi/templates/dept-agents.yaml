@@ -5,7 +5,7 @@ kind: Service
 metadata:
   name: dept-agent-{{ $dept.id | trimPrefix "dept_" | replace "_" "-" }}
   labels:
-    {{- include "wenshu.labels" $ | nindent 4 }}
+    {{- include "shangzhi.labels" $ | nindent 4 }}
     department: {{ $dept.id }}
 spec:
   selector:
@@ -20,7 +20,7 @@ kind: Deployment
 metadata:
   name: dept-agent-{{ $dept.id | trimPrefix "dept_" | replace "_" "-" }}
   labels:
-    {{- include "wenshu.labels" $ | nindent 4 }}
+    {{- include "shangzhi.labels" $ | nindent 4 }}
     department: {{ $dept.id }}
 spec:
   replicas: {{ $dept.minReplicas }}
@@ -52,7 +52,7 @@ spec:
           ports:
             - containerPort: 8000
           env:
-            {{- include "wenshu.env" $ | nindent 12 }}
+            {{- include "shangzhi.env" $ | nindent 12 }}
             - name: DEPT_ID
               value: {{ $dept.id | quote }}
             - name: DEPT_AGENTS_ENABLED
@@ -67,7 +67,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: dept-agent-{{ $dept.id | trimPrefix "dept_" | replace "_" "-" }}-hpa
   labels:
-    {{- include "wenshu.labels" $ | nindent 4 }}
+    {{- include "shangzhi.labels" $ | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
@@ -79,7 +79,7 @@ spec:
     - type: Pods
       pods:
         metric:
-          name: wenshu_dept_agent_inflight
+          name: shangzhi_dept_agent_inflight
         target:
           type: AverageValue
           averageValue: "8"

@@ -1,6 +1,6 @@
 [project]
 name = "intelligent-customer-service-backend"
-version = "0.1.0"
+version = "0.1.1"
 description = "智能客服 · 电商知识问答后端"
 requires-python = ">=3.9"
 dependencies = [

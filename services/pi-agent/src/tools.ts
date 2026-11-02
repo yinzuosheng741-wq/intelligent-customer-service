@@ -33,8 +33,8 @@ export function buildTools(config: Config): AgentTool[] {
   return [
     {
       name: "retrieve_documents",
-      label: "检索制度文档",
-      description: "混合检索（BM25+向量+重排）制度条款 chunk，返回与问题相关的原文片段。",
+      label: "检索业务规则文档",
+      description: "混合检索（BM25+向量+重排）业务规则条款 chunk，返回与问题相关的原文片段。",
       parameters: Type.Object({
         query: Type.String({ description: "检索查询" }),
         dept_ids: Type.Optional(Type.Array(Type.String())),

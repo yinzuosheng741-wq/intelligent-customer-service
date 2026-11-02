@@ -1,14 +1,14 @@
-# 部门 Agent 模板化示例（教务处）。
+# 部门 Agent 模板化示例（商品识别与检索组）。
 # 每部门独立 Deployment + HPA，按 QPS 自动伸缩（热门部门 maxReplicas 可到 20）。
 apiVersion: v1
 kind: Service
 metadata:
-  name: dept-agent-jwc
-  namespace: wenshu
+  name: dept-agent-product
+  namespace: shangzhi
 spec:
   selector:
     app: dept-agent
-    department: jwc
+    department: product
   ports:
     - port: 8000
       targetPort: 8000
@@ -16,22 +16,22 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: dept-agent-jwc
-  namespace: wenshu
+  name: dept-agent-product
+  namespace: shangzhi
   labels:
     app: dept-agent
-    department: jwc
+    department: product
 spec:
   replicas: 2
   selector:
     matchLabels:
       app: dept-agent
-      department: jwc
+      department: product
   template:
     metadata:
       labels:
         app: dept-agent
-        department: jwc
+        department: product
     spec:
       affinity:
         podAntiAffinity:
@@ -46,12 +46,12 @@ spec:
                 topologyKey: kubernetes.io/hostname
       containers:
         - name: agent
-          image: school-doc-agent:v1.0
+          image: intelligent-customer-service:v0.1.1
           ports:
             - containerPort: 8000
           env:
             - name: DEPT_ID
-              value: "dept_jwc"
+              value: "dept_product"
             - name: MODEL_NAME
               value: "deepseek-v4-flash"
             - name: STORAGE_MODE
@@ -67,27 +67,27 @@ spec:
             - name: DEEPSEEK_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: DEEPSEEK_API_KEY
             - name: RELAY_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: RELAY_API_KEY
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: MONGODB_URI
             - name: REDIS_ADDR
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: REDIS_ADDR
             - name: INTERNAL_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: INTERNAL_API_TOKEN
           resources:
             requests:
@@ -100,20 +100,20 @@ spec:
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: dept-agent-jwc-hpa
-  namespace: wenshu
+  name: dept-agent-product-hpa
+  namespace: shangzhi
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: dept-agent-jwc
+    name: dept-agent-product
   minReplicas: 2
-  maxReplicas: 20   # 教务处峰值扩容到 20 个 Pod
+  maxReplicas: 20   # 商品识别与检索组峰值扩容到 20 个 Pod
   metrics:
     - type: Pods
       pods:
         metric:
-          name: wenshu_dept_agent_inflight
+          name: shangzhi_dept_agent_inflight
         target:
           type: AverageValue
           averageValue: "8"

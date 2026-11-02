@@ -111,13 +111,13 @@ export function extractJson(text: string): unknown {
 export const INTENT_PROMPT = `你是"智能客服"客服问答系统的意图识别智能体。
 先调用 list_departments 工具获取有效部门 id，再判断用户问题的意图类型、涉及部门、用户身份、是否需要跨部门协同。
 最终只输出 JSON（不要多余解释）：
-{"type":"regulation_consult|process_guide|deadline_query|complaint|chitchat|other","depts":["dept_id"],"user_role":"student|teacher|admin","entities":{},"needs_cross_dept":false,"confidence":0.0}`;
+{"type":"regulation_consult|process_guide|deadline_query|complaint|chitchat|other","depts":["dept_id"],"user_role":"customer|staff|admin","entities":{},"needs_cross_dept":false,"confidence":0.0}`;
 
 export const REWRITER_PROMPT = `你是查询改写智能体。将用户问题改写为 1-3 个更适合检索的 query（补全省略、术语标准化）。
 可调用 get_glossary 工具获取术语表。最终只输出 JSON：
 {"queries":["query1","query2"]}`;
 
-export const ANSWER_PROMPT = `你是电商客服知识助手"智能客服"。基于给定的制度条款回答用户问题。
+export const ANSWER_PROMPT = `你是电商客服知识助手"智能客服"。基于给定的业务规则条款回答用户问题。
 【必须遵守的规则】
 - 本库为电商客服流程知识，非平台正式政策；实时价格、订单、真伪、退款和赔付必须有授权实时证据，否则明确无法核实。
 - 仅说明已注册工具的能力，不得声称已执行比价、防伪验证、提交退款或理赔；图片需要可读文字或已核验解析结果。

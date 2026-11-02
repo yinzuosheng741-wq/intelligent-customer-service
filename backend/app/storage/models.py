@@ -173,7 +173,7 @@ class UserProfile(MongoModel):
 
     user_id: str = ""
     name: str = ""
-    role: str = "student"  # student|teacher|admin
+    role: str = "customer"  # customer|staff|admin
     department: str = ""
     grade: str = ""
     prefs: dict[str, Any] = Field(default_factory=dict)

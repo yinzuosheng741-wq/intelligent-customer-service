@@ -13,13 +13,13 @@ from app.config import get_settings
 from app.deps import build_container
 
 # 目录名（或关键词）→ dept_id 映射
-DEPT_MAP = {'商品识别与检索组': 'dept_jwc',
- '比价导购组': 'dept_xsc',
- '退款服务组': 'dept_cwc',
- '订单物流组': 'dept_rsc',
- '二手鉴定组': 'dept_yjsy',
- '售后理赔组': 'dept_zfxy',
- '图像材料支持组': 'dept_hqaq'}
+DEPT_MAP = {'商品识别与检索组': 'dept_product',
+ '比价导购组': 'dept_pricing',
+ '退款服务组': 'dept_refund',
+ '订单物流组': 'dept_logistics',
+ '二手鉴定组': 'dept_authentication',
+ '售后理赔组': 'dept_claims',
+ '图像材料支持组': 'dept_evidence'}
 
 SUFFIXES = {".pdf", ".docx", ".doc", ".md", ".markdown", ".txt", ".html", ".htm"}
 

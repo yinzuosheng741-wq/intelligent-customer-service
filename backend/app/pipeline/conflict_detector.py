@@ -1,6 +1,6 @@
 """跨部门冲突检测（亮点）：规则层引用挖掘 + 语义层相似比对 + LLM 冲突判定。
 
-新文档入库时，与其他部门同类条款做语义比对，发现条款冲突（如退课截止时间不一致）
+新文档入库时，与其他部门同类条款做语义比对，发现条款冲突（如退款期限不一致）
 则建立 `doc_relations`(type=conflict) 并通知相关部门。
 """
 from __future__ import annotations
@@ -28,7 +28,7 @@ REF_PATTERNS = [
     re.compile(r"([\u4e00-\u9fff]{4,20}(?:办法|规定|细则|通知|条例|办法（试行）))"),
 ]
 
-CONFLICT_PROMPT = """你是制度条款冲突检测助手。给定两个不同部门对同类事项的规定，判断是否存在冲突。
+CONFLICT_PROMPT = """你是业务规则条款冲突检测助手。给定两个不同部门对同类事项的规定，判断是否存在冲突。
 
 仅输出 JSON：
 {{"is_conflict": true/false, "reason": "简述", "confidence": 0.0-1.0}}
@@ -150,7 +150,7 @@ class ConflictDetector:
     async def _judge_conflict(self, title_a: str, text_a: str, title_b: str, text_b: str) -> dict[str, Any]:
         try:
             msg = ChatMessage.user(CONFLICT_PROMPT.format(title_a=title_a, text_a=text_a[:800], title_b=title_b, text_b=text_b[:800]))
-            return await self.llm.complete_json([ChatMessage.system("你是制度冲突检测助手。"), msg], temperature=0.0)
+            return await self.llm.complete_json([ChatMessage.system("你是业务规则冲突检测助手。"), msg], temperature=0.0)
         except Exception as exc:  # noqa: BLE001
             logger.warning("冲突判定失败: %s", exc)
             return {"is_conflict": False, "reason": "", "confidence": 0.0}

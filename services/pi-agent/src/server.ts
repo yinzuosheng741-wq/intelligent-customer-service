@@ -26,7 +26,7 @@ function internalAuthorized(config: Config, header: string | string[] | undefine
 export function buildApp(config: Config, runtime: Runtime): FastifyInstance {
   const app = Fastify({ logger: false });
 
-  app.get("/health", async () => ({ status: "ok", service: "wenshu-pi-agent" }));
+  app.get("/health", async () => ({ status: "ok", service: "shangzhi-pi-agent" }));
 
   app.post("/v1/agent/run", async (req, reply) => {
     if (!internalAuthorized(config, req.headers["x-internal-token"])) {

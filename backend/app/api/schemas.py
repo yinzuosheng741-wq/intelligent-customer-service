@@ -92,6 +92,6 @@ class OrganizationMemoryCreate(BaseModel):
     title: str
     content: str
     source_refs: list[SourceRef] = Field(default_factory=list)
-    access_scope: list[str] = Field(default_factory=lambda: ["student", "teacher", "admin"])
+    access_scope: list[str] = Field(default_factory=lambda: ["customer", "staff", "admin"])
     effective_from: Optional[str] = None
     effective_to: Optional[str] = None

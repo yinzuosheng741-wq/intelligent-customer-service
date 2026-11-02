@@ -1,4 +1,4 @@
-# 文枢前端（Next.js）
+# 智能客服前端（Next.js）
 FROM node:24-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json* ./

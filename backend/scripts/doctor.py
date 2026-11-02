@@ -25,7 +25,7 @@ from typing import Any
 
 import httpx
 
-# 默认配置（与 .env 一致；经 doctor 实测校验过的可用模型名）
+# 默认配置；实际可用模型需按服务商配置并执行自检。
 DEFAULT_DEEPSEEK_BASE = "https://api.deepseek.com"
 DEFAULT_DEEPSEEK_MODEL = "deepseek-v4-flash"
 DEFAULT_RELAY_BASE = "https://yunwu.ai/v1"
@@ -122,8 +122,8 @@ async def check_rerank(base_url: str, api_key: str, model: str, name: str, timeo
     url = base_url.rstrip("/") + "/rerank"
     payload = {
         "model": model,
-        "query": "选课时间",
-        "documents": ["选课在第16至18周进行", "学费在开学前缴纳"],
+        "query": "退款进度查询",
+        "documents": ["退款进度查询需提供订单号", "商品规格以 SKU 资料为准"],
     }
     result = {"name": name, "kind": "rerank", "model": model, "url": url, "ok": False}
     try:

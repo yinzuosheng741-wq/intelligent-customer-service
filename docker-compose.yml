@@ -1,4 +1,4 @@
-# 文枢 · 全栈编排（MongoDB + Redis + Python 后端 + pi 智能体服务 + Next.js 前端）
+# 智能客服 · 全栈编排（MongoDB + Redis + Python 后端 + pi 智能体服务 + Next.js 前端）
 # 用法：docker compose up --build
 name: shangzhi
 
@@ -8,14 +8,14 @@ services:
     container_name: shangzhi-mongodb
     restart: unless-stopped
     environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-wenshu}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-wenshu}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-shangzhi}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-shangzhi}
     ports:
       - "28017:27017"
     volumes:
       - mongodb_data:/data/db
     healthcheck:
-      test: ["CMD", "mongosh", "--quiet", "-u", "${MONGO_INITDB_ROOT_USERNAME:-wenshu}", "-p", "${MONGO_INITDB_ROOT_PASSWORD:-wenshu}", "--authenticationDatabase", "admin", "--eval", "db.runCommand('ping').ok"]
+      test: ["CMD", "mongosh", "--quiet", "-u", "${MONGO_INITDB_ROOT_USERNAME:-shangzhi}", "-p", "${MONGO_INITDB_ROOT_PASSWORD:-shangzhi}", "--authenticationDatabase", "admin", "--eval", "db.runCommand('ping').ok"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -25,7 +25,7 @@ services:
     container_name: shangzhi-redis
     restart: unless-stopped
     environment:
-      REDIS_PASSWORD: ${REDIS_PASSWORD:-wenshu}
+      REDIS_PASSWORD: ${REDIS_PASSWORD:-shangzhi}
     command: ["sh", "-c", "redis-server --requirepass \"$$REDIS_PASSWORD\""]
     ports:
       - "26379:6379"
@@ -45,8 +45,8 @@ services:
     env_file:
       - .env
     environment:
-      MONGODB_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME:-wenshu}:${MONGO_INITDB_ROOT_PASSWORD:-wenshu}@mongodb:27017/${MONGODB_DB:-wenshu}?authSource=admin
-      REDIS_ADDR: redis://:${REDIS_PASSWORD:-wenshu}@redis:6379
+      MONGODB_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME:-shangzhi}:${MONGO_INITDB_ROOT_PASSWORD:-shangzhi}@mongodb:27017/${MONGODB_DB:-shangzhi}?authSource=admin
+      REDIS_ADDR: redis://:${REDIS_PASSWORD:-shangzhi}@redis:6379
       PI_AGENT_URL: http://pi-agent:8100
       PI_AGENT_ENABLED: "true"
       VECTOR_BACKEND: mongo
@@ -73,8 +73,8 @@ services:
     env_file:
       - .env
     environment:
-      MONGODB_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME:-wenshu}:${MONGO_INITDB_ROOT_PASSWORD:-wenshu}@mongodb:27017/${MONGODB_DB:-wenshu}?authSource=admin
-      REDIS_ADDR: redis://:${REDIS_PASSWORD:-wenshu}@redis:6379
+      MONGODB_URI: mongodb://${MONGO_INITDB_ROOT_USERNAME:-shangzhi}:${MONGO_INITDB_ROOT_PASSWORD:-shangzhi}@mongodb:27017/${MONGODB_DB:-shangzhi}?authSource=admin
+      REDIS_ADDR: redis://:${REDIS_PASSWORD:-shangzhi}@redis:6379
       STORAGE_MODE: mongo
       VECTOR_BACKEND: mongo
       UPLOAD_STORAGE_DIR: /data/uploads

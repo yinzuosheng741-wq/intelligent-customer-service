@@ -1,4 +1,4 @@
-"""种子数据：部门 / 术语表 / FAQ / 校历 / 默认 Rules&Hooks。
+"""种子数据：部门 / 术语表 / FAQ / 业务日历 / 默认 Rules&Hooks。
 
 用法：python -m scripts.seed_data
 """
@@ -11,13 +11,13 @@ from app.config import get_settings
 from app.deps import build_container
 from app.loop.default_skills import seed_default_skills
 
-DEPARTMENTS = [{'_id': 'dept_jwc', 'name': '商品识别与检索组', 'name_en': 'Product Retrieval', 'category': 'academic'},
- {'_id': 'dept_xsc', 'name': '比价导购组', 'name_en': 'Price Advisory', 'category': 'student'},
- {'_id': 'dept_cwc', 'name': '退款服务组', 'name_en': 'Refund Service', 'category': 'finance'},
- {'_id': 'dept_rsc', 'name': '订单物流组', 'name_en': 'Order Logistics', 'category': 'admin'},
- {'_id': 'dept_yjsy', 'name': '二手鉴定组', 'name_en': 'Authentication Advisory', 'category': 'academic'},
- {'_id': 'dept_zfxy', 'name': '售后理赔组', 'name_en': 'Claims Service', 'category': 'academic'},
- {'_id': 'dept_hqaq', 'name': '图像材料支持组', 'name_en': 'Visual Evidence Support', 'category': 'logistics'}]
+DEPARTMENTS = [{'_id': 'dept_product', 'name': '商品识别与检索组', 'name_en': 'Product Retrieval', 'category': 'product'},
+ {'_id': 'dept_pricing', 'name': '比价导购组', 'name_en': 'Price Advisory', 'category': 'pricing'},
+ {'_id': 'dept_refund', 'name': '退款服务组', 'name_en': 'Refund Service', 'category': 'refund'},
+ {'_id': 'dept_logistics', 'name': '订单物流组', 'name_en': 'Order Logistics', 'category': 'logistics'},
+ {'_id': 'dept_authentication', 'name': '二手鉴定组', 'name_en': 'Authentication Advisory', 'category': 'authentication'},
+ {'_id': 'dept_claims', 'name': '售后理赔组', 'name_en': 'Claims Service', 'category': 'claims'},
+ {'_id': 'dept_evidence', 'name': '图像材料支持组', 'name_en': 'Visual Evidence Support', 'category': 'evidence'}]
 
 GLOSSARY = [{'canonical': 'SKU', 'synonyms': ['商品编号', '货号', '库存单位']},
  {'canonical': '到手价', 'synonyms': ['券后价', '实付价']},
@@ -78,7 +78,7 @@ async def main() -> None:
     print(f"[glossary] {len(GLOSSARY)} 条")
 
     await container.global_memory.set_calendar(CALENDAR)
-    print("[calendar] 校历已写入全局记忆")
+    print("[calendar] 业务日历已写入全局记忆")
 
     await container.rule_engine.seed_defaults()
     await container.hook_engine.seed_defaults()

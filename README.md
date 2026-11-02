@@ -61,7 +61,7 @@
 - **固定版本**：在 [Releases](https://github.com/yinzuosheng741-wq/intelligent-customer-service/releases) 选择版本，下载页面底部的 `Source code (zip)` 或 `Source code (tar.gz)`。
 - **最新源码**：通过 `git clone` 获取，或使用仓库顶部的 **Code → Download ZIP**。
 
-首个版本为 `v0.1.0` 源码预览版，需要安装 Python / Node.js 依赖并配置模型服务。Release 提供固定版本的源码下载，不依赖 Actions 临时产物；当前没有打包为桌面安装程序。
+当前版本为 [v0.1.1 源码预览版](https://github.com/yinzuosheng741-wq/intelligent-customer-service/releases/tag/v0.1.1)，需要安装 Python / Node.js 依赖并配置模型服务。Release 提供固定版本的源码下载，不依赖 Actions 临时产物；当前没有打包为桌面安装程序。
 
 ## 快速开始
 
@@ -114,8 +114,8 @@ DEEPSEEK_MODEL=你的服务商支持的模型名称
 
 | 演示角色 | 用户名 | 密码 |
 | --- | --- | --- |
-| 咨询用户 | `student` | `student123` |
-| 商品组管理员 | `jwc_admin` | `admin123` |
+| 咨询用户 | `customer` | `customer123` |
+| 商品组管理员 | `product_admin` | `admin123` |
 | 系统管理员 | `admin` | `admin123` |
 
 登录后可以先尝试：“收到破损商品，应先保留哪些凭证？”，再追问：“那申请理赔还需要什么材料？”
@@ -204,7 +204,7 @@ npm run dev
 
 单独启动时需为各进程配置环境变量，且避免与本地启动器占用相同端口。后端模块、模型执行协议与环境配置分别见 [后端说明](backend/README.md)、[pi 服务说明](services/pi-agent/README.md) 和 [部署说明](docs/deployment.md)。
 
-当前源码预览版已打通文本问答、来源展示与反馈策略流程；真实业务工具、完整容器部署和集群运行仍需进一步接入与验证。
+本地内存模式已完成少量真实模型问答联调；MongoDB / Redis 持久化组合、Docker 完整运行和 Kubernetes 部署仍待端到端验证。运行模式与状态统一见 [部署说明](docs/deployment.md#当前运行状态)。
 
 ## 项目结构
 
@@ -238,4 +238,4 @@ docs/                使用、架构、API 与部署文档
 
 欢迎通过 [Issues](https://github.com/yinzuosheng741-wq/intelligent-customer-service/issues) 反馈使用问题或提出改进建议。报告问题时，请附上复现步骤、运行方式与脱敏日志。
 
-本项目基于文枢文档问答工程开展电商场景开发，使用 Pi、FastAPI、Next.js、React 等组件。工程来源与第三方组件说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+项目使用 Pi、FastAPI、Next.js、React 等组件。工程来源与第三方组件说明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

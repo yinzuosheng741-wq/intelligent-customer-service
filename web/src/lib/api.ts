@@ -62,7 +62,7 @@ export interface User {
   id: string;
   username: string;
   name: string;
-  role: "student" | "admin";
+  role: "customer" | "admin";
   dept_id: string;
 }
 
@@ -249,7 +249,7 @@ interface ApiResponse<T> {
 }
 
 // ==================== 鉴权 token 存取 ====================
-const TOKEN_KEY = "wenshu_token";
+const TOKEN_KEY = "shangzhi_token";
 
 export function getToken(): string | null {
   if (typeof window === "undefined") return null;

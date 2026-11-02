@@ -25,7 +25,7 @@ DELETE_DEPTS = []
 # =====================================================================
 # 各部门模拟数据：skill / docs / badcases / review_qa
 # =====================================================================
-DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_jwc',
+DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_product',
   'skill': {'name': '商品定位与检索指南',
             'keywords': ['商品', 'SKU', '型号', '同款', '品牌', '商品识别', '商品检索', '以图搜图'],
             'unique_rules': ['实时状态必须来自授权业务接口；知识库只说明流程。', '未提供的价格、时限、真伪结论和理赔结果不得补全。']},
@@ -47,7 +47,7 @@ DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_jwc',
                 'signal': 'correction',
                 'rule': '不得把流程说明或示例当成当前订单事实。'}],
   'review_qa': [{'question': '商品名模糊时应先确认什么？', 'expected': '唯一 SKU', 'answer': '唯一 SKU'}]},
- {'dept_id': 'dept_xsc',
+ {'dept_id': 'dept_pricing',
   'skill': {'name': '比价与历史价格咨询指南',
             'keywords': ['比价', '价格', '到手价', '历史低价', '优惠券', '划算', '折扣', '导购'],
             'unique_rules': ['实时状态必须来自授权业务接口；知识库只说明流程。', '未提供的价格、时限、真伪结论和理赔结果不得补全。']},
@@ -68,7 +68,7 @@ DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_jwc',
                 'signal': 'correction',
                 'rule': '不得把流程说明或示例当成当前订单事实。'}],
   'review_qa': [{'question': '历史价格查询涉及哪些时间窗口？', 'expected': '30天、90天、180天', 'answer': '30天、90天、180天'}]},
- {'dept_id': 'dept_cwc',
+ {'dept_id': 'dept_refund',
   'skill': {'name': '退款类型与进度咨询指南',
             'keywords': ['退款', '退货', '到账', '原路退回', '仅退款', '退货退款'],
             'unique_rules': ['实时状态必须来自授权业务接口；知识库只说明流程。', '未提供的价格、时限、真伪结论和理赔结果不得补全。']},
@@ -89,7 +89,7 @@ DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_jwc',
                 'signal': 'correction',
                 'rule': '不得把流程说明或示例当成当前订单事实。'}],
   'review_qa': [{'question': '退款申请有哪些类型？', 'expected': '仅退款、退货退款', 'answer': '仅退款、退货退款'}]},
- {'dept_id': 'dept_rsc',
+ {'dept_id': 'dept_logistics',
   'skill': {'name': '订单物流与地址处理指南',
             'keywords': ['订单', '物流', '单号', '发货', '收货地址', '快递', '催发货', '滞留'],
             'unique_rules': ['实时状态必须来自授权业务接口；知识库只说明流程。', '未提供的价格、时限、真伪结论和理赔结果不得补全。']},
@@ -110,7 +110,7 @@ DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_jwc',
                 'signal': 'correction',
                 'rule': '不得把流程说明或示例当成当前订单事实。'}],
   'review_qa': [{'question': '物流查询需要核对哪个编号？', 'expected': '物流单号', 'answer': '物流单号'}]},
- {'dept_id': 'dept_yjsy',
+ {'dept_id': 'dept_authentication',
   'skill': {'name': '二手商品鉴定取证指南',
             'keywords': ['二手', '鉴定', '真伪', '正品', '防伪', '鞋标', '鞋盒', '仿品'],
             'unique_rules': ['实时状态必须来自授权业务接口；知识库只说明流程。', '未提供的价格、时限、真伪结论和理赔结果不得补全。']},
@@ -132,7 +132,7 @@ DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_jwc',
                 'signal': 'correction',
                 'rule': '不得把流程说明或示例当成当前订单事实。'}],
   'review_qa': [{'question': '二手鉴定证据不足时应怎么办？', 'expected': '请求补图、平台专业鉴定', 'answer': '请求补图、平台专业鉴定'}]},
- {'dept_id': 'dept_zfxy',
+ {'dept_id': 'dept_claims',
   'skill': {'name': '售后理赔与投诉材料指南',
             'keywords': ['售后', '理赔', '破损', '瑕疵', '投诉', '描述不符', '凭证'],
             'unique_rules': ['实时状态必须来自授权业务接口；知识库只说明流程。', '未提供的价格、时限、真伪结论和理赔结果不得补全。']},
@@ -153,7 +153,7 @@ DEPT_DATA: list[dict[str, Any]] = [{'dept_id': 'dept_jwc',
                 'signal': 'correction',
                 'rule': '不得把流程说明或示例当成当前订单事实。'}],
   'review_qa': [{'question': '商品理赔常见凭证有哪些？', 'expected': '商品瑕疵照片、购买凭证', 'answer': '商品瑕疵照片、购买凭证'}]},
- {'dept_id': 'dept_hqaq',
+ {'dept_id': 'dept_evidence',
   'skill': {'name': '图像材料质量与取证指南',
             'keywords': ['图片', '模糊', '裁剪', 'OCR', '面单', '透视', '锐化', '超分', '看不清'],
             'unique_rules': ['实时状态必须来自授权业务接口；知识库只说明流程。', '未提供的价格、时限、真伪结论和理赔结果不得补全。']},
@@ -224,7 +224,7 @@ async def migrate_departments(container) -> None:
 
 async def seed_docs(container) -> None:
     store = container.store
-    tmp_dir = Path(tempfile.mkdtemp(prefix="wenshu_seed_"))
+    tmp_dir = Path(tempfile.mkdtemp(prefix="shangzhi_seed_"))
     try:
         for item in DEPT_DATA:
             dept_id = item["dept_id"]
@@ -311,7 +311,7 @@ async def seed_badcases_and_skills(container) -> None:
             await store.upsert("feedback", {
                 "_id": fb_id,
                 "session_id": "",
-                "user_id": "student",
+                "user_id": "customer",
                 "query": bc["query"],
                 "answer": bc["bad_answer"],
                 "kind": "explicit",
@@ -325,7 +325,7 @@ async def seed_badcases_and_skills(container) -> None:
                 await store.upsert("traces", {
                     "_id": trace_id,
                     "session_id": "",
-                    "user_id": "student",
+                    "user_id": "customer",
                     "query": bc["query"],
                     "answer": bc["bad_answer"],
                     "intent": {"type": "regulation_consult", "depts": [dept_id]},
@@ -340,7 +340,7 @@ async def seed_badcases_and_skills(container) -> None:
             await store.upsert("feedback", {
                 "_id": f"fb_{dept_id}_up_{g_i}",
                 "session_id": "",
-                "user_id": "student",
+                "user_id": "customer",
                 "query": gq["question"],
                 "answer": gq["answer"],
                 "kind": "explicit",
@@ -366,7 +366,7 @@ async def seed_badcases_and_skills(container) -> None:
                 "type": "workflow",
                 "steps": [
                     {"step": 1, "action": "extract_entity", "params": {"entity": "matter"}},
-                    {"step": 2, "action": "retrieve", "params": {"query": "{matter} 相关制度", "top_k": 5}},
+                    {"step": 2, "action": "retrieve", "params": {"query": "{matter} 相关业务规则", "top_k": 5}},
                     {"step": 3, "action": "generate", "params": {"template": "department"}},
                 ],
             },

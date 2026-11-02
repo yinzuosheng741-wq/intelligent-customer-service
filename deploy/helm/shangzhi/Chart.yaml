@@ -1,0 +1,6 @@
+apiVersion: v2
+name: shangzhi
+description: 智能客服 · 跨部门文档处理与问答助手（部门 Agent 模板化部署）
+type: application
+version: 0.1.1
+appVersion: "0.1.1"

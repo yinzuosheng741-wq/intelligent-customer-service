@@ -4,7 +4,7 @@
  * 说明：
  * - DeepSeek 是主力对话模型（关键路径，决定退出码）。
  * - 中转站（yunwu）在系统中用于 Embedding / bge 重排，走 Python 后端直连 HTTP
- *   （见 backend/scripts/doctor.py，已单独验证）。此处仅作信息性探测。
+ *   （使用 backend/scripts/doctor.py 检查）。此处仅作信息性探测。
  *
  * 用法：npm run doctor
  */
@@ -64,7 +64,7 @@ async function main(): Promise<void> {
     else console.log(`       ${r.error ? "error : " + r.error : "未获得输出"}`);
   }
   if (!relay) {
-    console.log("[INFO] 中转站在本系统中用于 Embedding/bge 重排，经 Python 直连验证（backend/scripts/doctor.py）");
+    console.log("[INFO] Embedding/bge 重排由 Python 后端调用，可使用 backend/scripts/doctor.py 检查连接");
   }
   console.log("=".repeat(60));
 

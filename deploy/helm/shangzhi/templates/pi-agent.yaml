@@ -4,7 +4,7 @@ kind: Service
 metadata:
   name: pi-agent
   labels:
-    {{- include "wenshu.labels" . | nindent 4 }}
+    {{- include "shangzhi.labels" . | nindent 4 }}
 spec:
   selector:
     app: pi-agent
@@ -17,7 +17,7 @@ kind: Deployment
 metadata:
   name: pi-agent
   labels:
-    {{- include "wenshu.labels" . | nindent 4 }}
+    {{- include "shangzhi.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.piAgent.replicas }}
   selector:
@@ -38,16 +38,16 @@ spec:
             - name: PORT
               value: "8100"
             - name: BACKEND_URL
-              value: "http://{{ include "wenshu.fullname" . }}-backend:8000"
+              value: "http://{{ include "shangzhi.fullname" . }}-backend:8000"
             - name: DEEPSEEK_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "wenshu.fullname" . }}-secret
+                  name: {{ include "shangzhi.fullname" . }}-secret
                   key: DEEPSEEK_API_KEY
             - name: INTERNAL_API_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: {{ include "wenshu.fullname" . }}-secret
+                  name: {{ include "shangzhi.fullname" . }}-secret
                   key: INTERNAL_API_TOKEN
           readinessProbe:
             httpGet: { path: /health, port: 8100 }

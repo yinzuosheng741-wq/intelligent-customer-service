@@ -10,7 +10,7 @@ backend/
 │   ├── main.py              # FastAPI 入口 + lifespan + /metrics + 种子账号/字段回填
 │   ├── config.py            # 环境配置（DeepSeek / 中转站 / 存储 / Loop / 鉴权 / 审核）
 │   ├── deps.py              # 依赖装配（构建全局单例容器，含 auth / review_engine）
-│   ├── auth.py              # 鉴权：用户账号 + HMAC Token + 角色（student/admin）
+│   ├── auth.py              # 鉴权：用户账号 + HMAC Token + 角色（customer/admin）
 │   ├── api/                 # L1 接入层
 │   │   ├── router.py        # 路由汇总
 │   │   ├── schemas.py       # 请求/响应模型
@@ -50,7 +50,7 @@ backend/
 
 ## 安装
 
-### 方式一：Docker（推荐）
+### 方式一：Docker Compose
 
 ```bash
 # 在项目根目录下

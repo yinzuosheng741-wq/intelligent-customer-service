@@ -36,7 +36,7 @@ class Settings(BaseSettings):
 
     # ---- Embedding ----
     # provider: relay | local | hash
-    # 注意：该中转站不提供 bge-m3 embedding，实测可用 text-embedding-3-large(3072)
+    # 模型与维度需和所配置的 Embedding 服务一致。
     embedding_provider: str = "relay"
     embedding_model: str = "text-embedding-3-large"
     embedding_dim: int = 3072
@@ -44,14 +44,14 @@ class Settings(BaseSettings):
     # ---- 存储 ----
     storage_mode: str = "mongo"  # mongo | memory
     mongodb_uri: str = "mongodb://localhost:27017"
-    mongodb_db: str = "wenshu"
+    mongodb_db: str = "shangzhi"
     redis_addr: str = "redis://localhost:6379"
     redis_db: int = 0
-    async_stream_name: str = "wenshu:jobs"
-    upload_storage_dir: str = "/tmp/wenshu-uploads"
+    async_stream_name: str = "shangzhi:jobs"
+    upload_storage_dir: str = "/tmp/shangzhi-uploads"
 
     # ---- 检索 ----
-    vector_backend: str = "memory"  # memory | mongo | chroma | milvus
+    vector_backend: str = "memory"  # memory | mongo | chroma
     hybrid_topk: int = 5
     bm25_top: int = 20
     vector_top: int = 20
@@ -59,7 +59,7 @@ class Settings(BaseSettings):
     reranker_model: str = "BAAI/bge-reranker-v2-m3"
 
     # ---- pi 智能体服务（Harness + Loop 深度整合） ----
-    # Python Harness 是唯一生产问答运行时；pi-agent 保留为实验服务，默认不接主链。
+    # Python Harness 控制问答流程，pi-agent 默认参与获准阶段的模型执行。
     pi_agent_enabled: bool = True
     pi_agent_url: str = "http://localhost:8100"
     pi_agent_timeout: float = 120.0
@@ -99,7 +99,7 @@ class Settings(BaseSettings):
     memory_org_limit: int = 8
 
     # ---- 鉴权 ----
-    auth_secret: str = "wenshu-dev-secret-change-me"
+    auth_secret: str = "shangzhi-dev-secret-change-me"
     auth_token_ttl_hours: int = 24
     # 内部接口（/internal/*）共享 Token：为空则内部接口不可用（fail-closed）
     internal_api_token: str = ""

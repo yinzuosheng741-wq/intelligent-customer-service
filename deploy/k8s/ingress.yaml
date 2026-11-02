@@ -2,14 +2,14 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: wenshu-ingress
-  namespace: wenshu
+  name: shangzhi-ingress
+  namespace: shangzhi
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "20m"
     nginx.ingress.kubernetes.io/limit-rps: "50"
 spec:
   rules:
-    - host: wenshu.example.com
+    - host: shangzhi.example.com
       http:
         paths:
           - path: /api

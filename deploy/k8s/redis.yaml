@@ -3,7 +3,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis
-  namespace: wenshu
+  namespace: shangzhi
 spec:
   selector:
     app: redis
@@ -15,7 +15,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis
-  namespace: wenshu
+  namespace: shangzhi
 spec:
   replicas: 1
   selector:
@@ -35,7 +35,7 @@ spec:
             - name: REDIS_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: REDIS_PASSWORD
           command: ["sh", "-c"]
           args: ["redis-server --requirepass \"$$REDIS_PASSWORD\""]

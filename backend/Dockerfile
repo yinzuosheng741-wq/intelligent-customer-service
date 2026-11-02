@@ -1,4 +1,4 @@
-# 文枢后端镜像
+# 智能客服后端镜像
 FROM python:3.11-slim
 
 ENV PYTHONUNBUFFERED=1 \

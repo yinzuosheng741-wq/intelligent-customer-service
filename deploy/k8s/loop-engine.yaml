@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: loop-engine
-  namespace: wenshu
+  namespace: shangzhi
   labels:
     app: loop-engine
 spec:
@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: loop-engine
-          image: school-doc-agent:v1.0
+          image: intelligent-customer-service:v0.1.1
           command: ["python", "-m", "scripts.async_worker"]
           env:
             - name: UPLOAD_STORAGE_DIR
@@ -36,22 +36,22 @@ spec:
             - name: DEEPSEEK_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: DEEPSEEK_API_KEY
             - name: RELAY_API_KEY
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: RELAY_API_KEY
             - name: MONGODB_URI
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: MONGODB_URI
             - name: REDIS_ADDR
               valueFrom:
                 secretKeyRef:
-                  name: wenshu-secrets
+                  name: shangzhi-secrets
                   key: REDIS_ADDR
           resources:
             requests:
@@ -66,4 +66,4 @@ spec:
       volumes:
         - name: uploads
           persistentVolumeClaim:
-            claimName: wenshu-uploads
+            claimName: shangzhi-uploads

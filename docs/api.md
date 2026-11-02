@@ -12,7 +12,7 @@
 
 | 方法 | 路径 | 说明 |
 |---|---|---|
-| POST | `/api/v1/auth/login` | 登录，返回 `{token, user}`；账号 `student/student123`、`admin/admin123` |
+| POST | `/api/v1/auth/login` | 登录，返回 `{token, user}`；账号 `customer/customer123`、`admin/admin123` |
 | GET | `/api/v1/auth/me` | 当前登录用户 |
 | GET | `/api/v1/auth/users` | 用户列表（管理员） |
 
@@ -36,7 +36,7 @@
 > 当某部门累计正确率 ≥ `REVIEW_ACCURACY_THRESHOLD` 且样本 ≥ `REVIEW_MIN_SAMPLES` 时，该部门自动进入
 > `human_out_of_loop`，未抽中的文档自动通过，同时保留抽检和错误回退。
 
-> 部门管理员数据隔离：`dept_id` 非空的管理员（如 `jwc_admin`）调用管理端接口时只能看到/操作本部门的
+> 部门管理员数据隔离：`dept_id` 非空的管理员（如 `product_admin`）调用管理端接口时只能看到/操作本部门的
 > 部门、文档、Skill、Hooks/Rules、审核单；跨部门访问返回 403。系统管理员（`admin`，`dept_id` 为空）看全部。
 
 ## 接口列表
@@ -59,7 +59,7 @@
 
 ```json
 {
-  "query": "退课截止时间是第几周？",
+  "query": "申请退款前需要准备哪些信息？",
   "session_id": "uuid",
   "dept_ids": null
 }

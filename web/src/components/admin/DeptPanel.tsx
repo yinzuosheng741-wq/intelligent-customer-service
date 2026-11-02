@@ -100,22 +100,24 @@ export default function DeptPanel({ data, refresh, user }: { data: Dashboard; re
 
   return (
     <div>
-      <div className={styles.sectionHead}><div><span className={styles.eyebrow}>KNOWLEDGE ASSETS</span><h2>部门与制度事实治理</h2><p>{isSuper ? "创建部门、导入制度并观察从解析到关系发现的完整链路。" : "当前空间只显示和操作本部门资产，跨部门数据由后端强制隔离。"}</p></div></div>
+      <div className={styles.sectionHead}><div><span className={styles.eyebrow}>KNOWLEDGE ASSETS</span><h2>部门与业务规则事实治理</h2><p>{isSuper ? "创建部门、导入业务规则并观察从解析到关系发现的完整链路。" : "当前空间只显示和操作本部门资产，跨部门数据由后端强制隔离。"}</p></div></div>
       <div className={styles.grid}>
         {isSuper && <div className={styles.card}>
           <h3>新建部门</h3>
           <div className={styles.row} style={{ marginBottom: 8 }}>
             <input className={styles.input} placeholder="ID（如 dept_xxx）" value={nid} onChange={(e) => setNid(e.target.value)} />
-            <input className={styles.input} placeholder="名称（如 国际交流处）" value={nname} onChange={(e) => setNname(e.target.value)} />
+            <input className={styles.input} placeholder="名称（如 会员服务组）" value={nname} onChange={(e) => setNname(e.target.value)} />
           </div>
           <div className={styles.row}>
             <select className={styles.select} value={ncat} onChange={(e) => setNcat(e.target.value)}>
               <option value="general">通用</option>
-              <option value="academic">商品与售后</option>
-              <option value="student">比价导购</option>
-              <option value="finance">财务</option>
-              <option value="admin">订单服务</option>
-              <option value="logistics">图像材料</option>
+              <option value="product">商品检索</option>
+              <option value="pricing">比价导购</option>
+              <option value="refund">退款服务</option>
+              <option value="logistics">订单物流</option>
+              <option value="authentication">鉴定流程</option>
+              <option value="claims">售后理赔</option>
+              <option value="evidence">图像材料</option>
             </select>
             <button className={styles.btn} onClick={onCreateDept} disabled={!nid || !nname}>
               创建
@@ -135,7 +137,7 @@ export default function DeptPanel({ data, refresh, user }: { data: Dashboard; re
               ))}
             </select>
           </div>
-          <label className={styles.filePicker}><input type="file" accept=".pdf,.docx,.md,.txt,.html" onChange={onUpload} disabled={busy || !deptId} /><span>选择制度文件</span></label>
+          <label className={styles.filePicker}><input type="file" accept=".pdf,.docx,.md,.txt,.html" onChange={onUpload} disabled={busy || !deptId} /><span>选择业务规则文件</span></label>
           <div className={styles.muted} style={{ marginTop: 8 }}>
             支持 PDF / Word / Markdown / TXT。上传后自动走 3.2 数据处理 Pipeline，并自动出题发起审核单。
           </div>

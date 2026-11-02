@@ -15,10 +15,10 @@ EXTRACT_PROMPT = """你是电商业务文档元数据抽取助手。请从给定
 
 字段说明：
 - effective_date: 生效日期（YYYY-MM-DD，无则 null）
-- doc_type: 文档类型，取值之一 regulation(制度办法)/notice(通知)/guide(指南)/form(表格)/other
+- doc_type: 文档类型，取值之一 regulation(业务规则办法)/notice(通知)/guide(指南)/form(表格)/other
 - keywords: 关键词列表（3-8 个中文短语）
 - applicable_scope: 适用对象列表，本场景使用 all（通用流程知识）；不要根据流程推断用户身份，其他保留值仅供原协议兼容
-- cross_refs: 文中引用的其他制度文件名列表（无则 []）
+- cross_refs: 文中引用的其他业务规则文件名列表（无则 []）
 
 JSON 结构：
 {{"effective_date": "...", "doc_type": "...", "keywords": [...], "applicable_scope": [...], "cross_refs": [...]}}

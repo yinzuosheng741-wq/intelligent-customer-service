@@ -17,7 +17,7 @@ INTENT_PROMPT = """你是电商客服意图识别助手。判断用户问题的�
 {{
   "type": "regulation_consult|process_guide|deadline_query|complaint|chitchat|other",
   "depts": ["dept_id"],           // 涉及的部门 id，从候选部门中选择；无法确定则 ["dept_all"]
-  "user_role": "student|teacher|admin",
+  "user_role": "customer|staff|admin",
   "entities": {{}},               // 关键实体，如 {{"matter": "退货退款", "platform": "用户指定平台"}}
   "needs_cross_dept": false,      // 是否涉及多个部门
   "confidence": 0.0-1.0
@@ -77,13 +77,13 @@ class IntentAgent:
     @staticmethod
     def _keyword_fallback(query: str) -> Intent:
         """无 LLM 时的关键词规则回退。"""
-        dept_keywords = {'dept_jwc': ['商品', 'SKU', '型号', '同款', '品牌', '商品识别', '商品检索', '以图搜图'],
- 'dept_xsc': ['比价', '价格', '到手价', '历史低价', '优惠券', '划算', '折扣', '导购'],
- 'dept_cwc': ['退款', '退货', '到账', '原路退回', '仅退款', '退货退款'],
- 'dept_rsc': ['订单', '物流', '单号', '发货', '收货地址', '快递', '催发货', '滞留'],
- 'dept_yjsy': ['二手', '鉴定', '真伪', '正品', '防伪', '鞋标', '鞋盒', '仿品'],
- 'dept_zfxy': ['售后', '理赔', '破损', '瑕疵', '投诉', '描述不符', '凭证'],
- 'dept_hqaq': ['图片', '模糊', '裁剪', 'OCR', '面单', '透视', '锐化', '超分', '看不清']}
+        dept_keywords = {'dept_product': ['商品', 'SKU', '型号', '同款', '品牌', '商品识别', '商品检索', '以图搜图'],
+ 'dept_pricing': ['比价', '价格', '到手价', '历史低价', '优惠券', '划算', '折扣', '导购'],
+ 'dept_refund': ['退款', '退货', '到账', '原路退回', '仅退款', '退货退款'],
+ 'dept_logistics': ['订单', '物流', '单号', '发货', '收货地址', '快递', '催发货', '滞留'],
+ 'dept_authentication': ['二手', '鉴定', '真伪', '正品', '防伪', '鞋标', '鞋盒', '仿品'],
+ 'dept_claims': ['售后', '理赔', '破损', '瑕疵', '投诉', '描述不符', '凭证'],
+ 'dept_evidence': ['图片', '模糊', '裁剪', 'OCR', '面单', '透视', '锐化', '超分', '看不清']}
         depts = [d for d, kws in dept_keywords.items() if any(k in query for k in kws)]
         intent_type = "other"
         if any(k in query for k in ["截止", "什么时候", "最晚", "deadline", "时间"]):

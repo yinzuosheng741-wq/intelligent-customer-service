@@ -1,4 +1,4 @@
-"""全局记忆：跨部门共享知识（全局 Skills/Rules、学期日历、全校术语）。"""
+"""全局记忆：跨部门共享知识（全局 Skills/Rules、业务日历、共享术语）。"""
 from __future__ import annotations
 
 from datetime import datetime, timezone
@@ -30,7 +30,7 @@ class GlobalMemory:
             "type": "calendar", "title": "当前业务日历", "content": str(calendar),
             "source_refs": [], "source_doc_ids": [], "authority": "admin_approved",
             "confidence": 1.0, "review_status": "approved", "status": "active",
-            "access_scope": ["student", "teacher", "admin"], "revision": 1,
+            "access_scope": ["customer", "staff", "admin"], "revision": 1,
             "updated_at": datetime.now(timezone.utc),
         })
 

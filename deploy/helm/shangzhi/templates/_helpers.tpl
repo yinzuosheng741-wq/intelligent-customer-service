@@ -1,14 +1,14 @@
-{{- define "wenshu.fullname" -}}
+{{- define "shangzhi.fullname" -}}
 {{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 
-{{- define "wenshu.labels" -}}
+{{- define "shangzhi.labels" -}}
 app.kubernetes.io/name: {{ .Chart.Name }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 app.kubernetes.io/version: {{ .Chart.AppVersion }}
 {{- end -}}
 
-{{- define "wenshu.env" -}}
+{{- define "shangzhi.env" -}}
 - name: STORAGE_MODE
   value: "mongo"
 - name: VECTOR_BACKEND
@@ -26,32 +26,32 @@ app.kubernetes.io/version: {{ .Chart.AppVersion }}
 - name: DEEPSEEK_API_KEY
   valueFrom:
     secretKeyRef:
-      name: {{ include "wenshu.fullname" . }}-secret
+      name: {{ include "shangzhi.fullname" . }}-secret
       key: DEEPSEEK_API_KEY
 - name: RELAY_API_KEY
   valueFrom:
     secretKeyRef:
-      name: {{ include "wenshu.fullname" . }}-secret
+      name: {{ include "shangzhi.fullname" . }}-secret
       key: RELAY_API_KEY
 - name: MONGODB_URI
   valueFrom:
     secretKeyRef:
-      name: {{ include "wenshu.fullname" . }}-secret
+      name: {{ include "shangzhi.fullname" . }}-secret
       key: MONGODB_URI
 - name: REDIS_ADDR
   valueFrom:
     secretKeyRef:
-      name: {{ include "wenshu.fullname" . }}-secret
+      name: {{ include "shangzhi.fullname" . }}-secret
       key: REDIS_ADDR
 - name: AUTH_SECRET
   valueFrom:
     secretKeyRef:
-      name: {{ include "wenshu.fullname" . }}-secret
+      name: {{ include "shangzhi.fullname" . }}-secret
       key: AUTH_SECRET
 - name: INTERNAL_API_TOKEN
   valueFrom:
     secretKeyRef:
-      name: {{ include "wenshu.fullname" . }}-secret
+      name: {{ include "shangzhi.fullname" . }}-secret
       key: INTERNAL_API_TOKEN
 - name: SEED_DEMO_USERS
   value: "false"

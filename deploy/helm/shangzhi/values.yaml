@@ -2,7 +2,7 @@
 
 image:
   repository: intelligent-customer-service
-  tag: "v1.0"
+  tag: "v0.1.1"
   pullPolicy: IfNotPresent
 
 # 密钥（生产建议使用外部 Secret / SealedSecret，勿提交真实值）
@@ -11,10 +11,10 @@ secrets:
   relayApiKey: ""
   authSecret: "change-me-strong-random-secret"
   internalApiToken: "change-me-strong-random-token"
-  mongoUser: "wenshu_admin"
+  mongoUser: "customer_service_admin"
   mongoPassword: "change-me-strong-mongo-password"
   redisPassword: "change-me-strong-redis-password"
-  mongodbUri: "mongodb://wenshu_admin:change-me-strong-mongo-password@mongodb:27017/wenshu?authSource=admin"
+  mongodbUri: "mongodb://customer_service_admin:change-me-strong-mongo-password@mongodb:27017/shangzhi?authSource=admin"
   redisAddr: "redis://:change-me-strong-redis-password@redis:6379"
 
 # 全局服务
@@ -31,7 +31,7 @@ piAgent:
   replicas: 2
   image:
     repository: intelligent-customer-service
-    tag: "pi-v1.0"
+    tag: "pi-v0.1.1"
   resources:
     requests: { cpu: "250m", memory: "256Mi" }
     limits: { cpu: "1000m", memory: "1Gi" }
@@ -56,21 +56,21 @@ model:
 
 # 部门 Agent（模板化：每项渲染一个独立 Deployment + HPA）
 departments:
-  - id: dept_jwc
+  - id: dept_product
     name: 商品识别与检索组
     minReplicas: 2
     maxReplicas: 20
     resources:
       requests: { cpu: "500m", memory: "512Mi" }
       limits: { cpu: "2000m", memory: "2Gi" }
-  - id: dept_xsc
+  - id: dept_pricing
     name: 比价导购组
     minReplicas: 2
     maxReplicas: 20
     resources:
       requests: { cpu: "500m", memory: "512Mi" }
       limits: { cpu: "2000m", memory: "2Gi" }
-  - id: dept_hqaq
+  - id: dept_evidence
     name: 图像材料支持组
     minReplicas: 1
     maxReplicas: 5
@@ -80,4 +80,4 @@ departments:
 
 ingress:
   enabled: false
-  host: wenshu.example.com
+  host: shangzhi.example.com

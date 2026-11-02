@@ -1,6 +1,6 @@
 {
   "name": "intelligent-customer-service-pi",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "智能客服 Agent 模型执行服务",
   "type": "module",
   "engines": {

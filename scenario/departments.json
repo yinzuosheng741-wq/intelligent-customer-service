@@ -1,44 +1,44 @@
 [
   {
-    "_id": "dept_jwc",
+    "_id": "dept_product",
     "name": "商品识别与检索组",
     "name_en": "Product Retrieval",
-    "category": "academic"
+    "category": "product"
   },
   {
-    "_id": "dept_xsc",
+    "_id": "dept_pricing",
     "name": "比价导购组",
     "name_en": "Price Advisory",
-    "category": "student"
+    "category": "pricing"
   },
   {
-    "_id": "dept_cwc",
+    "_id": "dept_refund",
     "name": "退款服务组",
     "name_en": "Refund Service",
-    "category": "finance"
+    "category": "refund"
   },
   {
-    "_id": "dept_rsc",
+    "_id": "dept_logistics",
     "name": "订单物流组",
     "name_en": "Order Logistics",
-    "category": "admin"
+    "category": "logistics"
   },
   {
-    "_id": "dept_yjsy",
+    "_id": "dept_authentication",
     "name": "二手鉴定组",
     "name_en": "Authentication Advisory",
-    "category": "academic"
+    "category": "authentication"
   },
   {
-    "_id": "dept_zfxy",
+    "_id": "dept_claims",
     "name": "售后理赔组",
     "name_en": "Claims Service",
-    "category": "academic"
+    "category": "claims"
   },
   {
-    "_id": "dept_hqaq",
+    "_id": "dept_evidence",
     "name": "图像材料支持组",
     "name_en": "Visual Evidence Support",
-    "category": "logistics"
+    "category": "evidence"
   }
 ]

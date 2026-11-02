@@ -10,7 +10,7 @@ from app.integrations.pi_runtime import PiAgentRuntimeClient
 
 logger = get_logger(__name__)
 
-ANSWER_PROMPT = """你是电商客服知识助手"智能客服"。请基于给定的制度条款回答用户问题。
+ANSWER_PROMPT = """你是电商客服知识助手"智能客服"。请基于给定的业务规则条款回答用户问题。
 
 【必须遵守的规则】
 {rules}
@@ -55,7 +55,7 @@ class AnswerAgent:
         if extra_instructions:
             rules_text += "\n" + extra_instructions
         if memory_context:
-            rules_text += "\n以下记忆仅用于理解上下文和回答风格，不能作为制度事实或引用来源：\n" + memory_context[:2400]
+            rules_text += "\n以下记忆仅用于理解上下文和回答风格，不能作为业务规则事实或引用来源：\n" + memory_context[:2400]
         if not chunks:
             return Answer(content="根据现有业务资料无法核实，请补充适用平台规则或授权业务结果，建议咨询相关部门。", citations=[], dept_ids=[])
 
@@ -100,7 +100,7 @@ class AnswerAgent:
 
     @staticmethod
     def _fallback_answer(query: str, chunks: list[dict[str, Any]]) -> str:
-        parts = ["根据检索到的制度条款："]
+        parts = ["根据检索到的业务规则条款："]
         for i, c in enumerate(chunks[:3], start=1):
             parts.append(f"[来源{i}] {c.get('content', '')[:300]}")
         return "\n".join(parts)

@@ -56,7 +56,7 @@ class HookEngine:
         result = list(dept_ids)
         query = intent.raw.get("query", "")
         # 触发关键词到部门的静态映射（跨部门协同示例）
-        kw_dept = {'假货': 'dept_yjsy', '理赔': 'dept_zfxy', '退款': 'dept_cwc', '破损': 'dept_zfxy', '价格': 'dept_xsc'}
+        kw_dept = {'假货': 'dept_authentication', '理赔': 'dept_claims', '退款': 'dept_refund', '破损': 'dept_claims', '价格': 'dept_pricing'}
         for hook in hooks:
             action = hook.get("action", {})
             if action.get("type") == "cross_dept_retrieval" or action.get("expand_depts"):

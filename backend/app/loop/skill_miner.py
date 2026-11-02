@@ -24,7 +24,7 @@ SKILL_DRAFT_PROMPT = """你是 Skill 挖掘助手。根据一类高频问题模�
     "type": "workflow",
     "steps": [
       {{"step": 1, "action": "extract_entity", "params": {{"entity": "matter"}}}},
-      {{"step": 2, "action": "retrieve", "params": {{"query": "{{matter}} 相关制度", "top_k": 5}}}},
+      {{"step": 2, "action": "retrieve", "params": {{"query": "{{matter}} 相关业务规则", "top_k": 5}}}},
       {{"step": 3, "action": "generate", "params": {{"template": "default"}}}}
     ]
   }}
@@ -122,7 +122,7 @@ class SkillMiner:
             "action": {
                 "type": "workflow",
                 "steps": [
-                    {"step": 1, "action": "retrieve", "params": {"query": "{matter} 相关制度", "top_k": 5}},
+                    {"step": 1, "action": "retrieve", "params": {"query": "{matter} 相关业务规则", "top_k": 5}},
                     {"step": 2, "action": "generate", "params": {"template": "default"}},
                 ],
             },

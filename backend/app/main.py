@@ -43,7 +43,7 @@ async def lifespan(app: FastAPI):
     if seeded_skills:
         logger.info("已创建 %d 个可执行基线 Skills", seeded_skills)
 
-    # 种子账号（学生/管理员）
+    # 种子账号（咨询用户/管理员）
     await container.auth.seed_users()
 
     # 回填部门 Loop 阶段与审核统计字段（兼容旧数据）
@@ -108,7 +108,7 @@ async def _backfill_departments(container) -> None:
 
 
 settings = get_settings()
-app = FastAPI(title=settings.app_name, version="0.1.0", lifespan=lifespan)
+app = FastAPI(title=settings.app_name, version="0.1.1", lifespan=lifespan)
 
 # CORS：显式来源列表；通配符来源不允许携带凭据（浏览器规范）
 _cors_origins = settings.cors_origin_list
