@@ -32,12 +32,12 @@ Execute ──► Observe ──► Reflect ──► Adapt ──► Deploy ─
 | Hooks | 触发阈值、路由规则 | Hook 动作定义 | — |
 | Rules | 权重、优先级、top-k | 规则内容 | — |
 
-## 4. 成功指标（Success Metric）
+## 4. 运行观察
 
 - 回答质量：采纳率（👍/👎）、答案引用条款数（≥1）、Verifier 评分（0-1）
 - 检索质量：Hit Rate@5、MRR
-- 效率目标：首 token < 2s、P99 < 8s、单轮成本 < ¥0.02；当前 SSE 仍为完整回答后的分片输出，首 token 目标尚未达成
-- 覆盖：可回答率 ≥ 90%
+- 执行效率：阶段耗时、失败率与模型调用成本。当前 SSE 在完整回答后分片输出。
+- 知识覆盖：无依据问题、知识缺口与待补充的业务资料。
 
 ## 5. 人逐步退出循环
 
@@ -50,7 +50,7 @@ Execute ──► Observe ──► Reflect ──► Adapt ──► Deploy ─
 ## 6. Skills / Hooks / Rules
 
 - **Skills**：程序化知识"怎么做"。如 `deadline_query`（截止时间查询 + 业务日历工具 + 倒计时模板）。
-- **Hooks**：事件响应"何时触发什么"。如 `cross_dept_hook`（选课+缴费 → 同时检索商品识别与检索组+退款服务组）。
+- **Hooks**：事件响应"何时触发什么"。如跨业务咨询时，同时检索商品信息与退款规则。
 - **Rules**：硬约束"必须遵守"。如 `cite_source_rule`（必须带引用）、`no_guess_rule`（无依据则明说）。
 
 ### 可执行基线 Skill
@@ -83,7 +83,7 @@ Execute ──► Observe ──► Reflect ──► Adapt ──► Deploy ─
 
 运行可选的 `seed_demo_data` 后，每个演示部门还会增加一个 Skill（`skill_<dept>_seed`），包含：
 
-- `unique_rules`：该部门独特规则（如商品识别与检索组"退课截止第8周、退费按剩余周比例"），种子静态写入。
+- `unique_rules`：业务组的专属流程与证据要求，由种子数据初始化。
 - `rubric_rules`：由 badcase 反思总结出的评分卡规则，**初始为空，运行 Loop 后由 Reflect→Adapt 沉淀**。
   执行「手动触发一次 Loop」时，`_deterministic_suggestions` 会从 badcase 的 `detail.rule` 抽取规则建议，
   并把每条规则追加到对应部门 Skill 的 `rubric_rules`（同时生成待审核的全局/部门 Rule）。

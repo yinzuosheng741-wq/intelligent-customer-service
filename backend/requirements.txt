@@ -14,7 +14,7 @@ redis>=5.0
 pymongo>=4.6
 
 # ---- 检索 ----
-# Chroma 为可选：本地向量检索（开发零运维）。生产可切 Milvus。
+# Chroma 为可选向量后端；轻量安装可使用 pyproject.toml 的基础依赖。
 chromadb>=0.5
 
 # ---- 文档解析 ----
@@ -38,7 +38,3 @@ jieba>=0.42              # 中文分词（BM25 / 关键词）
 
 # ---- 可观测性 ----
 prometheus-client>=0.20
-
-# ---- 测试 ----
-pytest>=8.0
-pytest-asyncio>=0.23

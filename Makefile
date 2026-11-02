@@ -1,4 +1,4 @@
-.PHONY: help up down logs build doctor ingest seed backend-run backend-test pi-run pi-doctor web-dev
+.PHONY: help up down logs doctor ingest seed backend-install backend-run pi-install pi-run pi-doctor web-install web-dev
 
 help:
 	@echo "智能客服 · 常用命令"
@@ -9,7 +9,6 @@ help:
 	@echo "  make ingest         导入 department_files 示例文档"
 	@echo "  make seed           种子数据（部门/术语/业务日历/规则）"
 	@echo "  make backend-run    本地运行后端"
-	@echo "  make backend-test   运行后端单元测试"
 	@echo "  make pi-run         本地运行 pi 智能体服务"
 	@echo "  make pi-doctor      pi 框架自检"
 	@echo "  make web-dev        本地运行前端 dev server"
@@ -37,9 +36,6 @@ backend-install:
 
 backend-run:
 	cd backend && . .venv/bin/activate && uvicorn app.main:app --reload --port 8000
-
-backend-test:
-	cd backend && . .venv/bin/activate && pytest
 
 pi-install:
 	cd services/pi-agent && npm install

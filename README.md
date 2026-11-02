@@ -11,7 +11,7 @@
 ![FastAPI](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Web-Next.js-000000?logo=nextdotjs&logoColor=white)
 
-[功能特性](#功能特性) · [快速开始](#快速开始) · [系统架构](#系统架构) · [开发与验证](#开发与验证) · [文档](#文档)
+[功能特性](#功能特性) · [下载与版本](#下载与版本) · [快速开始](#快速开始) · [系统架构](#系统架构) · [文档](#文档)
 
 </div>
 
@@ -21,7 +21,7 @@
 
 我开发这个项目，是希望把客服问答中容易出错的环节串成一条可检查的链路：先理解问题，再检索当前有效的资料，依据原文回答，最后校验引用；遇到资料缺失或需要真实业务数据的问题，明确说明依据和能力范围。
 
-仓库包含前端、后端、模型执行服务、示例知识与验证脚本，可以在本地体验完整的文本问答流程，也可以作为接入企业知识库和业务工具的开发基础。
+仓库包含前端、后端、模型执行服务、示例知识与部署配置，可以在本地体验完整的文本问答流程，也可以作为接入企业知识库和业务工具的开发基础。
 
 ## 界面预览
 
@@ -55,6 +55,13 @@
 | 图像材料支持 | “提交售后图片时，有哪些清晰度和取证要求？” |
 
 当前版本提供**文本知识咨询与流程指引**。实时查价、订单状态查询、退款提交、商品真伪识别和直接图片问答需要另行接入业务系统或模型能力。示例知识用于开发体验，正式使用时请替换为经过审核的业务资料。
+
+## 下载与版本
+
+- **固定版本**：在 [Releases](https://github.com/yinzuosheng741-wq/intelligent-customer-service/releases) 选择版本，下载页面底部的 `Source code (zip)` 或 `Source code (tar.gz)`。
+- **最新源码**：通过 `git clone` 获取，或使用仓库顶部的 **Code → Download ZIP**。
+
+首个版本为 `v0.1.0` 源码预览版，需要安装 Python / Node.js 依赖并配置模型服务。Release 提供固定版本的源码下载，不依赖 Actions 临时产物；当前没有打包为桌面安装程序。
 
 ## 快速开始
 
@@ -179,50 +186,42 @@ flowchart TB
 - **记忆与事实分工**：历史对话、偏好和摘要用于理解问题，组织知识需绑定并核查原文来源，程序性策略用于调整执行参数。
 - **反馈通过策略影响执行**：Skill 可扩展查询词、调整 top-k、切换模板；策略变更保留执行记录，并经过回放与灰度验证。
 
-## 开发与验证
+## 本地开发
 
-### 本地检查
+完整应用可使用上述本地启动器运行。需要单独开发前端或模型执行服务时，可以在对应目录启动：
 
-```powershell
-.\.venv\Scripts\python.exe -m pip install -e ".\backend[dev]"
-Push-Location backend
-..\.venv\Scripts\python.exe -m pytest
-Pop-Location
-.\.venv\Scripts\python.exe tools/verify_scenario.py
+```bash
+# 前端，默认端口 3000；通过 BACKEND_URL 配置后端地址
+cd web
+npm run dev
 ```
 
-测试使用离线存储与确定性 hash 向量，无需启动 MongoDB、Redis 或真实模型。验证范围见 [后端测试说明](backend/tests/README.md)。
+```bash
+# pi 模型执行服务
+cd services/pi-agent
+npm run dev
+```
 
-### 当前验证状态
+单独启动时需为各进程配置环境变量，且避免与本地启动器占用相同端口。后端模块、模型执行协议与环境配置分别见 [后端说明](backend/README.md)、[pi 服务说明](services/pi-agent/README.md) 和 [部署说明](docs/deployment.md)。
 
-| 检查项 | 已记录的结果 |
-| --- | --- |
-| 后端测试 | 59 项通过，覆盖鉴权、版本治理、记忆、检索、队列与业务组隔离。 |
-| 场景冒烟 | 7 份文档、14 个切片；7 条问题命中预期业务组并返回有效来源文件引用。 |
-| 策略执行 | 售后 Skill 扩展查询词，将 top-k 从 5 调整为 7，并生成执行记录。 |
-| 真实模型联调 | 已验证带来源回答、退款状态能力边界，以及 Intent / Rewrite / Answer / Verify 的 pi 执行。 |
-| 前端与服务构建 | Web 与 pi 构建检查通过；Windows standalone 打包存在符号链接警告。 |
-| 部署检查 | Compose 配置校验通过；完整容器运行与集群压测待验证。 |
-
-这些结果用于说明功能与工程行为。当前尚未建立独立业务验收集，问答准确率、生产延迟和吞吐量仍待评测。详细记录见 [验证说明](docs/验证结果.md)。
+当前源码预览版已打通文本问答、来源展示与反馈策略流程；真实业务工具、完整容器部署和集群运行仍需进一步接入与验证。
 
 ## 项目结构
 
 ```text
-backend/             FastAPI、Harness、检索、记忆、Loop 与测试
+backend/             FastAPI、Harness、检索、记忆与 Loop
 services/pi-agent/   模型执行与受控工具调用服务
 web/                 客服问答与管理界面
 department_files/    按业务组组织的示例知识
 scenario/            业务组、术语与能力目录
-tools/               环境初始化、本地启动与场景验证
+tools/               环境初始化与本地启动
 deploy/              Kubernetes / Helm 部署模板
-loadtest/            负载测试脚本
-docs/                架构、API、部署与验证文档
+docs/                使用、架构、API 与部署文档
 ```
 
 ## 后续计划
 
-- [ ] 扩充经过审核的业务知识，建立独立评测集与错误案例集。
+- [ ] 扩充经过审核的商品与售后业务知识。
 - [ ] 接入真实 Embedding / Reranker，评估语义检索与引用质量。
 - [ ] 对接授权的订单、物流和售后工具，补充调用审计与操作确认。
 - [ ] 验证容器部署，补充故障恢复与并发测试。
@@ -233,7 +232,7 @@ docs/                架构、API、部署与验证文档
 - [业务知识设计](docs/business-design.md) · [知识来源](docs/knowledge-sources.md)
 - [部署说明](docs/deployment.md) · [API 文档](docs/api.md)
 - [反馈与策略 Loop](docs/loop-engineering.md)
-- [测试说明](backend/tests/README.md) · [验证记录](docs/验证结果.md)
+- [页面使用指南](docs/user-guide.md)
 
 ## 交流与开发参考
 

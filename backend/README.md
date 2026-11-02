@@ -37,7 +37,6 @@ backend/
 │   ├── storage/             # MongoDB / Redis / 统一存储(含内存回退)
 │   └── utils/               # 日志 / Prometheus 指标
 ├── scripts/                 # 种子数据 / 演示数据 / 导入部门文档 / 依赖等待
-├── tests/                   # 单元 + 端到端冒烟测试
 ├── requirements.txt
 ├── pyproject.toml
 └── Dockerfile
@@ -93,7 +92,7 @@ uvicorn app.main:app --reload --port 8000
 | `AUTH_SECRET` | Token 签名密钥（生产务必修改） |
 | `REVIEW_QUESTION_COUNT` / `REVIEW_ACCURACY_THRESHOLD` / `REVIEW_MIN_SAMPLES` | 人工审核 Loop：出题数 / 退出阈值 / 最小样本 |
 
-## 运行与验证
+## 数据初始化与导入
 
 ```bash
 # 种子数据（部门/术语/业务日历/默认规则/3 条基线 Skill）
@@ -105,8 +104,6 @@ python -m scripts.seed_demo_data
 # 导入 department_files 示例文档
 python -m scripts.ingest_department_files --base ../department_files
 
-# 测试
-pytest
 ```
 
 ## 关键设计说明
@@ -116,7 +113,7 @@ pytest
 2. **混合检索**：BM25（jieba）+ 向量（`text-embedding-3-large`/local/hash）RRF 融合 + 重排。
 3. **Loop 自进化**：反馈队列 → Reflect 归因 → Skill/Hook/Rule 更新 → 灰度部署，
    按 `LOOP_PHASE` 控制人在环中/环上/环外。
-4. **统一存储抽象**：`DataStore` 接口 + Mongo/Memory 双实现，离线可跑、可测。
+4. **统一存储抽象**：`DataStore` 接口 + Mongo/Memory 双实现，支持持久化部署与内存开发模式。
 5. **全链路回退**：LLM 未配置或失败时各 Agent 自动降级（关键词意图 / 术语扩展 / 原文拼接 / 启发式校验），系统不崩。
 6. **鉴权与角色**：登录签发带 `iat/exp` 的 HMAC Token；身份只从 Token 获取，资源操作校验用户/部门所有权。
 7. **人工审核 Loop**：新文档入库自动出题 → 系统作答 → 发部门管理员审核单 → 累计题库/反馈，

@@ -5,7 +5,7 @@ BM25 关键词 + 向量语义 + RRF 融合 + 重排序。
 ## 文件
 
 - `bm25.py` —— jieba BM25；多 Pod 的 `mongo` 模式从共享 active chunks 无状态计算
-- `vector_store.py` —— 向量存储抽象（内存 / Mongo 共享 / Chroma；规模化可切 Milvus）
+- `vector_store.py` —— 向量存储抽象（内存 / Mongo 共享 / Chroma）
 - `reranker.py` —— 重排序（默认启发式，可选 cross-encoder）
 - `hybrid.py` —— 混合检索（RRF 倒数排名融合）
 
