@@ -1,0 +1,120 @@
+[
+  {
+    "canonical": "SKU",
+    "synonyms": [
+      "商品编号",
+      "货号",
+      "库存单位"
+    ]
+  },
+  {
+    "canonical": "到手价",
+    "synonyms": [
+      "券后价",
+      "实付价"
+    ]
+  },
+  {
+    "canonical": "历史价格",
+    "synonyms": [
+      "价格走势",
+      "历史低价"
+    ]
+  },
+  {
+    "canonical": "以图搜图",
+    "synonyms": [
+      "图片检索",
+      "image_search"
+    ]
+  },
+  {
+    "canonical": "文字检索",
+    "synonyms": [
+      "关键词检索",
+      "text_search"
+    ]
+  },
+  {
+    "canonical": "网页搜索",
+    "synonyms": [
+      "web_search"
+    ]
+  },
+  {
+    "canonical": "版面解析",
+    "synonyms": [
+      "OCR",
+      "layout_parsing",
+      "面单识别"
+    ]
+  },
+  {
+    "canonical": "裁剪",
+    "synonyms": [
+      "crop",
+      "局部放大"
+    ]
+  },
+  {
+    "canonical": "透视矫正",
+    "synonyms": [
+      "perspective_correct",
+      "倾斜校正"
+    ]
+  },
+  {
+    "canonical": "超分辨率",
+    "synonyms": [
+      "super_resolution",
+      "低分辨率增强"
+    ]
+  },
+  {
+    "canonical": "锐化",
+    "synonyms": [
+      "sharpen",
+      "边缘增强"
+    ]
+  },
+  {
+    "canonical": "防伪码验证",
+    "synonyms": [
+      "防伪查询",
+      "查防伪码"
+    ]
+  },
+  {
+    "canonical": "退货退款",
+    "synonyms": [
+      "退货并退款"
+    ]
+  },
+  {
+    "canonical": "仅退款",
+    "synonyms": [
+      "不退货退款"
+    ]
+  },
+  {
+    "canonical": "物流轨迹",
+    "synonyms": [
+      "快递进度",
+      "包裹位置"
+    ]
+  },
+  {
+    "canonical": "申请理赔",
+    "synonyms": [
+      "破损索赔",
+      "描述不符理赔"
+    ]
+  },
+  {
+    "canonical": "鉴定报告",
+    "synonyms": [
+      "鉴定结果",
+      "平台鉴定结论"
+    ]
+  }
+]

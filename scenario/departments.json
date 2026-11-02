@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "dept_jwc",
+    "name": "商品识别与检索组",
+    "name_en": "Product Retrieval",
+    "category": "academic"
+  },
+  {
+    "_id": "dept_xsc",
+    "name": "比价导购组",
+    "name_en": "Price Advisory",
+    "category": "student"
+  },
+  {
+    "_id": "dept_cwc",
+    "name": "退款服务组",
+    "name_en": "Refund Service",
+    "category": "finance"
+  },
+  {
+    "_id": "dept_rsc",
+    "name": "订单物流组",
+    "name_en": "Order Logistics",
+    "category": "admin"
+  },
+  {
+    "_id": "dept_yjsy",
+    "name": "二手鉴定组",
+    "name_en": "Authentication Advisory",
+    "category": "academic"
+  },
+  {
+    "_id": "dept_zfxy",
+    "name": "售后理赔组",
+    "name_en": "Claims Service",
+    "category": "academic"
+  },
+  {
+    "_id": "dept_hqaq",
+    "name": "图像材料支持组",
+    "name_en": "Visual Evidence Support",
+    "category": "logistics"
+  }
+]

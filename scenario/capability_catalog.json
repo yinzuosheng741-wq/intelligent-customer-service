@@ -1,0 +1,186 @@
+[
+  {
+    "name": "crop",
+    "category": "视觉处理",
+    "description": "裁剪聚焦",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "perspective_correct",
+    "category": "视觉处理",
+    "description": "透视矫正",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "super_resolution",
+    "category": "视觉处理",
+    "description": "超分辨率",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "sharpen",
+    "category": "视觉处理",
+    "description": "锐化",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "layout_parsing",
+    "category": "视觉处理",
+    "description": "版面解析",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "text_search",
+    "category": "信息检索",
+    "description": "文字检索",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "image_search",
+    "category": "信息检索",
+    "description": "图片检索",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "web_search",
+    "category": "信息检索",
+    "description": "网页搜索",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "跨平台比价",
+    "category": "比价导购",
+    "description": "跨平台比价",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "历史价格查询",
+    "category": "比价导购",
+    "description": "历史价格查询",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "优惠券领取",
+    "category": "比价导购",
+    "description": "优惠券领取",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "防伪码验证",
+    "category": "二手鉴定",
+    "description": "防伪码验证",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "官方鉴定标准查询",
+    "category": "二手鉴定",
+    "description": "官方鉴定标准查询",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "申请平台鉴定",
+    "category": "二手鉴定",
+    "description": "申请平台鉴定",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "鉴定报告查询",
+    "category": "二手鉴定",
+    "description": "鉴定报告查询",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "申请退款",
+    "category": "售后理赔",
+    "description": "申请退款",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "跟踪退款进度",
+    "category": "售后理赔",
+    "description": "跟踪退款进度",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "申请理赔",
+    "category": "售后理赔",
+    "description": "申请理赔",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "催发货",
+    "category": "售后理赔",
+    "description": "催发货",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "投诉商家",
+    "category": "售后理赔",
+    "description": "投诉商家",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "订单详情查询",
+    "category": "通用订单",
+    "description": "订单详情查询",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "物流轨迹查询",
+    "category": "通用订单",
+    "description": "物流轨迹查询",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  },
+  {
+    "name": "修改收货地址",
+    "category": "通用订单",
+    "description": "修改收货地址",
+    "source": "电商客服业务能力规范；见 docs/knowledge-sources.md",
+    "status": "knowledge_only_not_registered",
+    "runtime_note": "当前状态为知识目录，尚未接入对应的外部业务工具。文档检索不等于实时查询或操作。"
+  }
+]
